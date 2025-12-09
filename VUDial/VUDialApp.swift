@@ -12,7 +12,7 @@ import SwiftData
 struct VUDialApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Dial.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -28,5 +28,6 @@ struct VUDialApp: App {
             ContentView()
         }
         .modelContainer(sharedModelContainer)
+        .defaultSize(width: 900, height: 600)
     }
 }

@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		24CFF6762EBF46330014B0E7 /* ORSSerial in Frameworks */ = {isa = PBXBuildFile; productRef = 24CFF6752EBF46330014B0E7 /* ORSSerial */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		24CFF6462EBF3F030014B0E7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -32,16 +36,22 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		24CFF6382EBF3F010014B0E7 /* VUDial */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = VUDial;
 			sourceTree = "<group>";
 		};
 		24CFF6482EBF3F030014B0E7 /* VUDialTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = VUDialTests;
 			sourceTree = "<group>";
 		};
 		24CFF6522EBF3F030014B0E7 /* VUDialUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = VUDialUITests;
 			sourceTree = "<group>";
 		};
@@ -52,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24CFF6762EBF46330014B0E7 /* ORSSerial in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +123,7 @@
 			);
 			name = VUDial;
 			packageProductDependencies = (
+				24CFF6752EBF46330014B0E7 /* ORSSerial */,
 			);
 			productName = VUDial;
 			productReference = 24CFF6362EBF3F010014B0E7 /* VUDial.app */;
@@ -134,8 +146,6 @@
 				24CFF6482EBF3F030014B0E7 /* VUDialTests */,
 			);
 			name = VUDialTests;
-			packageProductDependencies = (
-			);
 			productName = VUDialTests;
 			productReference = 24CFF6452EBF3F030014B0E7 /* VUDialTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -157,8 +167,6 @@
 				24CFF6522EBF3F030014B0E7 /* VUDialUITests */,
 			);
 			name = VUDialUITests;
-			packageProductDependencies = (
-			);
 			productName = VUDialUITests;
 			productReference = 24CFF64F2EBF3F030014B0E7 /* VUDialUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -195,6 +203,9 @@
 			);
 			mainGroup = 24CFF62D2EBF3F010014B0E7;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				24CFF6742EBF46330014B0E7 /* XCRemoteSwiftPackageReference "ORSSerialPort" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 24CFF6372EBF3F010014B0E7 /* Products */;
 			projectDirPath = "";
@@ -394,13 +405,26 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VUDial/VUDial.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5NUSWX8E44;
-				ENABLE_APP_SANDBOX = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -426,13 +450,26 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VUDial/VUDial.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5NUSWX8E44;
-				ENABLE_APP_SANDBOX = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -573,6 +610,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		24CFF6742EBF46330014B0E7 /* XCRemoteSwiftPackageReference "ORSSerialPort" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/armadsen/ORSSerialPort";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		24CFF6752EBF46330014B0E7 /* ORSSerial */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24CFF6742EBF46330014B0E7 /* XCRemoteSwiftPackageReference "ORSSerialPort" */;
+			productName = ORSSerial;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 24CFF62E2EBF3F010014B0E7 /* Project object */;
 }

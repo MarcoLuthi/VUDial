@@ -9,51 +9,93 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    // MARK: - Environment
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+
+    // MARK: - Managers
+    @StateObject private var serialManager = SerialPortManager()
+    @State private var dialManager: DialManager?
+
+    // MARK: - Selection
+    @State private var selectedDial: Dial?
+
+    // MARK: - Error Handling
+    @State private var showingError = false
+    @State private var errorMessage = ""
+
+    // MARK: - Body
 
     var body: some View {
         NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-            .toolbar {
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
+            if let dialManager {
+                DialDiscoveryView(
+                    dialManager: dialManager,
+                    serialManager: serialManager,
+                    selectedDial: $selectedDial
+                )
+            } else {
+                ProgressView("Initializing...")
             }
         } detail: {
-            Text("Select an item")
-        }
-    }
+            if let dialManager, let selectedDial {
+                DialControlView(
+                    dial: selectedDial,
+                    dialManager: dialManager
+                )
+            } else {
+                VStack(spacing: 16) {
+                    Image(systemName: "dial.medium.fill")
+                        .font(.system(size: 60))
+                        .foregroundColor(.secondary)
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+                    Text("Select a dial to control")
+                        .font(.title3)
+                        .foregroundColor(.secondary)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
+        }
+        .navigationSplitViewStyle(.balanced)
+        .onAppear {
+            // Initialize DialManager with model context
+            if dialManager == nil {
+                dialManager = DialManager(
+                    serialManager: serialManager,
+                    modelContext: modelContext
+                )
+            }
+        }
+        .onChange(of: dialManager?.lastError) { oldValue, newValue in
+            if let error = newValue {
+                errorMessage = error
+                showingError = true
+            }
+        }
+        .alert("Error", isPresented: $showingError) {
+            Button("OK") {
+                dialManager?.lastError = nil
+            }
+        } message: {
+            Text(errorMessage)
         }
     }
 }
 
+// MARK: - Preview
+
 #Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Dial.self, configurations: config)
+
+    // Add sample dial
+    let dial = Dial(
+        uid: "ABC123",
+        name: "Test Dial",
+        index: 0,
+        currentValue: 50
+    )
+    container.mainContext.insert(dial)
+
+    return ContentView()
+        .modelContainer(container)
 }
