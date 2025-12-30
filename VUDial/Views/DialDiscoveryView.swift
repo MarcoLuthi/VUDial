@@ -228,7 +228,7 @@ struct DialRow: View {
                 Spacer()
 
                 // Color preview
-                if dial.red > 0 || dial.green > 0 || dial.blue > 0 || dial.white > 0 {
+                if dial.red > 0 || dial.green > 0 || dial.blue > 0 {
                     RoundedRectangle(cornerRadius: 4)
                         .fill(Color(
                             red: dial.red / 100.0,
@@ -255,7 +255,7 @@ struct DialRow: View {
     // Add sample dials
     let dial1 = Dial(uid: "ABC123", name: "CPU Usage", index: 0, currentValue: 45)
     let dial2 = Dial(uid: "DEF456", name: "Memory", index: 1, currentValue: 78)
-    dial1.setBacklight(red: 80, green: 20, blue: 10, white: 0)
+    dial1.setBacklight(red: 80, green: 20, blue: 10)
 
     container.mainContext.insert(dial1)
     container.mainContext.insert(dial2)

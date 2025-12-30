@@ -19,7 +19,7 @@ struct VUDialProtocol {
         case displayGotoXY = 0x0E     // Set display cursor position
         case displayImageData = 0x0F  // Upload image data chunk
         case displayShowImage = 0x10  // Show uploaded image on display
-        case setBacklight = 0x13      // Set RGBW backlight
+        case setBacklight = 0x13      // Set RGB backlight
         case rescanBus = 0x1F         // Scan I2C bus for dials
         case getFirmwareVersion = 0x04 // Get firmware info
     }
@@ -68,26 +68,24 @@ struct VUDialProtocol {
 
     // MARK: - Set Backlight Command
 
-    /// Create command to set RGBW backlight
+    /// Create command to set RGB backlight
     /// - Parameters:
     ///   - dialIndex: I2C bus index of dial
     ///   - red: Red channel 0-100%
     ///   - green: Green channel 0-100%
     ///   - blue: Blue channel 0-100%
-    ///   - white: White channel 0-100%
     /// - Returns: Command string
     static func setBacklightCommand(
         dialIndex: UInt8,
         red: Double,
         green: Double,
-        blue: Double,
-        white: Double
+        blue: Double
     ) -> String {
         // Send 0-100 directly (not scaled to 255)
         let r = UInt8(max(0, min(100, red)))
         let g = UInt8(max(0, min(100, green)))
         let b = UInt8(max(0, min(100, blue)))
-        let w = UInt8(max(0, min(100, white)))
+        let w: UInt8 = 0  // White channel not used but protocol requires 5 bytes
 
         let payload = "\(toHex(dialIndex))\(toHex(r))\(toHex(g))\(toHex(b))\(toHex(w))"
         return buildCommand(command: .setBacklight, dataType: .multipleValue, payload: payload)

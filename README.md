@@ -1,6 +1,6 @@
 # VUDial
 
-A native Swift package for controlling [VU1 Dials](https://vu1.io) — physical analog gauge displays featuring e-paper screens and RGBW backlighting. Built with SwiftUI, SwiftData, and modern Swift concurrency.
+A native Swift package for controlling [VU1 Dials](https://vu1.io) — physical analog gauge displays featuring e-paper screens and RGB backlighting. Built with SwiftUI, SwiftData, and modern Swift concurrency.
 
 ![macOS](https://img.shields.io/badge/macOS-14.0+-blue)
 ![Swift](https://img.shields.io/badge/Swift-6.0+-orange)
@@ -261,11 +261,11 @@ func updateCPUDial(_ dial: Dial, dialManager: DialManager) {
 
     // Color code: green → yellow → red based on usage
     if cpuUsage < 50 {
-        dialManager.setDialBacklight(dial, red: 0, green: 100, blue: 0, white: 0)
+        dialManager.setDialBacklight(dial, red: 0, green: 100, blue: 0)
     } else if cpuUsage < 80 {
-        dialManager.setDialBacklight(dial, red: 100, green: 100, blue: 0, white: 0)
+        dialManager.setDialBacklight(dial, red: 100, green: 100, blue: 0)
     } else {
-        dialManager.setDialBacklight(dial, red: 100, green: 0, blue: 0, white: 0)
+        dialManager.setDialBacklight(dial, red: 100, green: 0, blue: 0)
     }
 }
 ```

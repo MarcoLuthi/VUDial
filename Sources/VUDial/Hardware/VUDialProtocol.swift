@@ -85,8 +85,9 @@ public struct VUDialProtocol {
         let r = UInt8(max(0, min(100, red)))
         let g = UInt8(max(0, min(100, green)))
         let b = UInt8(max(0, min(100, blue)))
+        let w: UInt8 = 0  // White channel not used but protocol requires 5 bytes
 
-        let payload = "\(toHex(dialIndex))\(toHex(r))\(toHex(g))\(toHex(b))"
+        let payload = "\(toHex(dialIndex))\(toHex(r))\(toHex(g))\(toHex(b))\(toHex(w))"
         return buildCommand(command: .setBacklight, dataType: .multipleValue, payload: payload)
     }
 

@@ -46,7 +46,7 @@ struct DialControlView: View {
             }
 
             // Backlight Section
-            Section("Backlight (RGBW)") {
+            Section("Backlight (RGB)") {
                 ColorSlider(
                     label: "Red",
                     value: $dial.red,
@@ -71,15 +71,6 @@ struct DialControlView: View {
                     color: .blue
                 )
                 .onChange(of: dial.blue) { _, _ in
-                    updateBacklight()
-                }
-
-                ColorSlider(
-                    label: "White",
-                    value: $dial.white,
-                    color: .gray
-                )
-                .onChange(of: dial.white) { _, _ in
                     updateBacklight()
                 }
 
@@ -166,8 +157,7 @@ struct DialControlView: View {
             dial,
             red: dial.red,
             green: dial.green,
-            blue: dial.blue,
-            white: dial.white
+            blue: dial.blue
         )
     }
 
@@ -252,8 +242,7 @@ struct ColorSlider: View {
         currentValue: 50,
         red: 80,
         green: 40,
-        blue: 20,
-        white: 10
+        blue: 20
     )
 
     let config = ModelConfiguration(isStoredInMemoryOnly: true)

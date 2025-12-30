@@ -35,9 +35,6 @@ final class Dial {
     /// Blue backlight channel (0-100%)
     var blue: Double
 
-    /// White backlight channel (0-100%)
-    var white: Double
-
     /// Last communication timestamp
     var lastSeen: Date
 
@@ -61,8 +58,7 @@ final class Dial {
         currentValue: Double = 0,
         red: Double = 0,
         green: Double = 0,
-        blue: Double = 0,
-        white: Double = 0
+        blue: Double = 0
     ) {
         self.uid = uid
         self.name = name
@@ -71,7 +67,6 @@ final class Dial {
         self.red = red
         self.green = green
         self.blue = blue
-        self.white = white
         self.lastSeen = Date()
         self.isOnline = false
         self.imageData = nil
@@ -81,11 +76,10 @@ final class Dial {
     // MARK: - Convenience
 
     /// Update backlight colors
-    func setBacklight(red: Double, green: Double, blue: Double, white: Double) {
+    func setBacklight(red: Double, green: Double, blue: Double) {
         self.red = red
         self.green = green
         self.blue = blue
-        self.white = white
     }
 
     /// Update dial value

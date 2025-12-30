@@ -152,8 +152,8 @@ class DialManager: ObservableObject {
     }
 
     /// Set dial backlight (queued update)
-    func setDialBacklight(_ dial: Dial, red: Double, green: Double, blue: Double, white: Double) {
-        dial.setBacklight(red: red, green: green, blue: blue, white: white)
+    func setDialBacklight(_ dial: Dial, red: Double, green: Double, blue: Double) {
+        dial.setBacklight(red: red, green: green, blue: blue)
         queueUpdate(for: dial, type: .backlight)
     }
 
@@ -288,10 +288,9 @@ class DialManager: ObservableObject {
                     dialIndex: UInt8(dial.index),
                     red: dial.red,
                     green: dial.green,
-                    blue: dial.blue,
-                    white: dial.white
+                    blue: dial.blue
                 )
-                print("💡 Sending backlight: R=\(dial.red) G=\(dial.green) B=\(dial.blue) W=\(dial.white)")
+                print("💡 Sending backlight: R=\(dial.red) G=\(dial.green) B=\(dial.blue)")
                 serialManager.sendCommandFireAndForget(command)
             }
         }
